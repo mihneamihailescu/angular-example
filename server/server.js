@@ -1,9 +1,21 @@
-const express = require('express')
+const express = require("express");
 
-const app = express()
+const app = express();
 
 app.get("/api", (req, res) => {
-    res.json({ "users": ["test1", "test2"] })
-})
+  setTimeout(() => {
+    res.set("Access-Control-Allow-Origin", "http://localhost:4200");
 
-app.listen(5001, () => { console.log("STARTED SERVER") })
+    res.json({
+      users: [
+        { id: "ID1", name: "test1" },
+        { id: "ID2", name: "test2" },
+      ],
+    });
+    console.log("wait");
+  }, 3000);
+});
+
+app.listen(5001, () => {
+  console.log("STARTED SERVER");
+});
